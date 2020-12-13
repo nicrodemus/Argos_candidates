@@ -6,13 +6,13 @@ var logger = require('morgan');
 var mongoose = require("mongoose");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const keys = require("./config/data")
+//const keys = require("./config/data")
 require("./model/CrewModel");
 require("./model/counterModel");
 
 var app = express();
 
-mongoose.connect(keys.mongoURI,{useNewUrlParser: true}).then(() => console.log('we are connect')).catch((err) => console.log(err));
+mongoose.connect("mongodb+srv://niccolo:Ni323537323537@cluster0.7viiv.mongodb.net/Argos_project?retryWrites=true&w=majority",{useNewUrlParser: true}).then(() => console.log('we are connect')).catch((err) => console.log(err));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
