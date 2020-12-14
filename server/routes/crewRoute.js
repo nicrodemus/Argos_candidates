@@ -19,16 +19,23 @@ module.exports = app =>{
             console.log(err)
         }
 
-    })
+    });
 
     app.get("/api/crew",async(req,res) =>{
         try{
             const response = await CrewMember.find({});
             console.log(response);
-            const arrayResponse = response.map(({name}) =>name)
+           
             res.send(response)
         }catch(err){
             console.log(err)
         }
+    });
+    app.delete("/api/delete_candidate/:id",async(req,res) =>{
+       try{
+        const {id} = req.params;
+        const result = await CrewMember.findByIdAndDelete(id);
+        res.send(result)
+       }catch(err){console.log(err)}
     })
 }

@@ -1,8 +1,14 @@
-import React from "react";
+import React,{useEffect,} from "react";
 import {connect} from "react-redux";
 import CrewMemberCard from "./CrewMemberCard"; 
-const landing = ({crew}) =>{
-    console.log("dadada",crew)
+import {fetchAllCrew,deleteCandidate} from "../redux/actions/index"
+const Landing = ({crew,fetchCrew,deleteOneCandidate}) =>{
+    console.log("dadada",crew);
+    const OnDelete =(id) =>{deleteOneCandidate(id)};
+    useEffect(() => {
+        fetchCrew()
+    }, [])
+    
 const mapCrew = () =>{
  return crew.crew.map(el =>{
 
@@ -13,8 +19,10 @@ const mapCrew = () =>{
           _id ={el._id}
           name={el.name}
           age={el.age}
-          job = {el.job} />
-          
+          job = {el.job}
+          clicked={() =>OnDelete(el._id)} 
+          />
+         
           </div>
           
      )
@@ -31,6 +39,10 @@ function mapStateToProps({crew}){
     
     return ({crew})
 }
+const mapDispatchToProps ={
+   fetchCrew:fetchAllCrew,
+   deleteOneCandidate:deleteCandidate
+}
 
 
-export default connect(mapStateToProps)(landing)
+export default connect(mapStateToProps,mapDispatchToProps)(Landing)
