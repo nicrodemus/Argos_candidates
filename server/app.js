@@ -22,7 +22,9 @@ app.use(logger('dev'));
 app.use(express.json());
 //app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
+const publicPath = path.join(__dirname, '..', 'public');
+app.use(express.static(publicPath));
 require("./routes/crewRoute")(app);
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
@@ -42,17 +44,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-if (process.env.NODE_ENV === 'production') {
-  // Express will serve up production assets
-  // like our main.js file, or main.css file!
-  app.use(express.static('client/build'));
 
-  // Express will serve up the index.html file
-  // if it doesn't recognize the route
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
 module.exports = app;
