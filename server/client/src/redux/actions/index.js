@@ -7,6 +7,7 @@ export const submitForm =(values,history) =>async dispatch =>{
         const res = await axios.post('/api/candidates',values);
         console.log(res);
         dispatch({type:ADD_MEMBER,payload:res.data})
+        history.push("/")
     }catch(err){
         console.log(err.response);
         console.log(err.response.data);

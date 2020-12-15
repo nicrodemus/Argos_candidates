@@ -10,7 +10,7 @@ class MemberForm extends Component{
     renderFields(){
         return _.map(formFields,({label,name,type}) =>{
           console.log("huiuiuiiu",type)
-            return <Field key={name} label={label} name={name} type={type} component={CandidateField} />
+            return <Field key={name}  label={label} name={name} type={type} component={CandidateField}  />
         }) 
          
 
@@ -19,8 +19,8 @@ class MemberForm extends Component{
         const  {  handleSubmit  } = this.props;
           
         return(
-            <div>
-            <form 
+            <div className="row" style={{marginTop:"30px",height:"600px"}}>
+            <form className="col s12"
             onSubmit={handleSubmit(this.props.onRecipeSubmit)}
             //nitialValues={{name: "dudi"}}
             >

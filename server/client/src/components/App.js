@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import * as actions from '../redux/actions';
 import Header from "./Header";
 import CrewNewMember from "./CrewNewMember"; 
-import Landing from "./Landing"
+import Landing from "./Landing";
+import Footer from "./Footer";
 class App extends Component{
 
   componentDidMount() {
@@ -26,7 +27,7 @@ class App extends Component{
 
       </Switch>
       </div>
-       
+       <Footer />
         </BrowserRouter>
     </div>
   );

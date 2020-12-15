@@ -8,7 +8,7 @@ const header = ({crew}) =>{
                 <NavLink className="left brand-logo" to ="/">JASON'S QUEST</NavLink>
              
                 <ul className= "right">
-                <li><NavLink to="/form/new"><button  className="btn-floating btn-large waves-effect waves-light green"><i className="material-icons">add</i></button></NavLink></li>
+                <li><NavLink to="/form/new"><button  className="btn-floating btn-large waves-effect waves-light red"><i className="material-icons">add</i></button></NavLink></li>
                     <li style={{"margin-right": "20px"}}>{crew.crew.length} candidates</li>
 
                 </ul>
