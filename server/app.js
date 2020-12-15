@@ -15,16 +15,16 @@ require("./model/CrewModel");
 mongoose.connect(keys.mongoURI,{useNewUrlParser: true}).then(() => console.log('we are connect')).catch((err) => console.log(err));
 var app = express();
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'jade');
 
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(express.json());
 //app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
-const publicPath = path.join(__dirname, '..', 'public');
-app.use(express.static(publicPath));
+
+
 require("./routes/crewRoute")(app);
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
@@ -44,8 +44,15 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+if (process.env.NODE_ENV === 'production') {
+  // Express will serve up production assets
+  // like our main.js file, or main.css file!
+  app.use(express.static('client/build'));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(publicPath, 'index.html'));
+  res.sendFile(path.resolve(__dirname,"client","build",'index.html'));
 });
+}
+const PORT = process.env.PORT || 5000;
+app.listen(PORT);
+
 module.exports = app;
