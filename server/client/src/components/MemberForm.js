@@ -9,7 +9,7 @@ import formFields from "./formFields";
 class MemberForm extends Component{
     renderFields(){
         return _.map(formFields,({label,name,type}) =>{
-          console.log("huiuiuiiu",type)
+          //console.log("huiuiuiiu",type)
             return <Field key={name}  label={label} name={name} type={type} component={CandidateField}  />
         }) 
          

@@ -3,7 +3,7 @@ const app = require("../app");
 const CrewMember = mongoose.model("crew");
 module.exports = app =>{
     app.post("/api/candidates",async(req,res) =>{
-        console.log(req.body);
+        //console.log(req.body);
         try{
         const {name,age,job} = req.body;
        
@@ -16,7 +16,7 @@ module.exports = app =>{
         await member.save();
         res.send(member);
         }catch(err){
-            console.log(err)
+            return
         }
 
     });
@@ -24,11 +24,11 @@ module.exports = app =>{
     app.get("/api/crew",async(req,res) =>{
         try{
             const response = await CrewMember.find({});
-            console.log(response);
+           // console.log(response);
            
             res.send(response)
         }catch(err){
-            console.log(err)
+            return err
         }
     });
     app.delete("/api/delete_candidate/:id",async(req,res) =>{
@@ -36,6 +36,6 @@ module.exports = app =>{
         const {id} = req.params;
         const result = await CrewMember.findByIdAndDelete(id);
         res.send(result)
-       }catch(err){console.log(err)}
+       }catch(err){return err}
     })
 }

@@ -2,15 +2,18 @@ import axios from "axios";
 import {ADD_MEMBER,FETCH_ALL_CREW,DELETE_CANDIDATE} from "./types";
 
 export const submitForm =(values,history) =>async dispatch =>{
-    console.log( "helo,,,,,",values)
+    //console.log( "helo,,,,,",values)
     try{
         const res = await axios.post('/api/candidates',values);
-        console.log(res);
+        //console.log(res);
         dispatch({type:ADD_MEMBER,payload:res.data})
         history.push("/")
     }catch(err){
-        console.log(err.response);
-        console.log(err.response.data);
+        return err
+        //console.log(err.response);
+        //console.log(err.response.data);
+       
+
     }
 }
 export const fetchAllCrew = () =>async dispatch =>{
@@ -21,8 +24,10 @@ export const fetchAllCrew = () =>async dispatch =>{
 export const deleteCandidate = (id,history) => async dispatch =>{
     try{
         const res = await axios.delete(`/api/delete_candidate/${id}`)
-        console.log("ooooooooooooo",res.data._id);
+        //console.log("ooooooooooooo",res.data._id);
         dispatch({type:DELETE_CANDIDATE,payload:res.data._id});
         history.push("/");
-    }catch(err){console.log(err)}
+    }catch(err){
+        //console.log(err)
+          return err          }
 }

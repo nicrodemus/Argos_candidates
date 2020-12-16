@@ -21,7 +21,7 @@ const header = ({crew}) =>{
 }
 
 function mapStateToProps({crew}){
-    console.log( "here you are", {crew})
+   //console.log( "here you are", {crew})
     return {crew}
   }
 export default connect(mapStateToProps)(withRouter(header))

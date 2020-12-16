@@ -29,6 +29,18 @@ require("./routes/crewRoute")(app);
 app.use('/', indexRouter);
 //app.use('/users', usersRouter);
 
+if(process.env.NODE_ENV === 'production') {
+  // Express will serve up production assets
+  // like our main.js file, or main.css file!
+  app.use(express.static('client/build'));
+
+  // Express will serve up the index.html file
+  // if it doesn't recognize the route
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -45,9 +57,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 module.exports = app;

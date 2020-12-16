@@ -12,7 +12,7 @@ const Landing = ({crew,fetchCrew,deleteOneCandidate}) =>{
     const handleChange = event =>{
         setSearchTerm(event.target.value);
     }
-    console.log("dadada",crew);
+    //console.log("dadada",crew);
     const OnDelete =(id) =>{deleteOneCandidate(id)};
     
     useEffect(() => {

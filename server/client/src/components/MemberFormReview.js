@@ -7,7 +7,7 @@ import * as actions from "../redux/actions/index";
 
 const MemberFormReview = ({onCancel,showForm, form,error,submitForm,history}) =>{
 
-    console.log("here 's my form", form);
+    //console.log("here 's my form", form);
 
     const reviewFields = _.map(formFields,({name,label}) =>{
         return  (
@@ -32,14 +32,14 @@ const MemberFormReview = ({onCancel,showForm, form,error,submitForm,history}) =>
             onClick={onCancel}>
                 Back
             </button >
-            <button  onClick={()=> submitForm(form,history)} className="green btn-flat right">NEW RECIPE <i className="material-icons right">email</i></button>
+            <button  onClick={()=> submitForm(form,history)} className="green btn-flat right">NEW MEMBER <i className="material-icons right">email</i></button>
     
 
         </div>
     );
 }
 function mapStateToProps(state){
-    console.log(state)
+   // console.log(state)
     return {form : state.form.memberForm.values, 
             
            }

@@ -12,8 +12,8 @@ class App extends Component{
 
   componentDidMount() {
     
-    // this.props.fetchRecipe()
-     this.props.fetchAllCrew();
+    
+    // this.props.fetchAllCrew();
    }
   render(){
   return (
